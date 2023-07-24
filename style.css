@@ -1,0 +1,345 @@
+:root {
+    --primary-100: #2563eb;
+    --primary-200: #598ef3;
+    --primary-300: #d3e6fe;
+    --accent-100: #d946ef;
+    --accent-200: #fae8ff;
+    --text-100: #cbd5e1;
+    --text-200: #94a3b8;
+    --bg-100: #1e293b;
+    --bg-200: #334155;
+    --bg-300: #475569;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-100);
+    color: var(--text-100);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 300px auto 400px;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.left-sidebar {
+    background-color: var(--bg-200);
+    width: 300px;
+    height: 100vh;
+}
+
+.chatlist-container {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 115px);
+    min-height: 70px;
+    overflow: hidden;
+}
+
+.chatlist {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    overflow: scroll;
+    padding: 8px;
+    transform: translateX(100%);
+}
+
+.chatlist.active-chatlist {
+    transform: translate(-100%);
+}
+
+.chatlist.active {
+    transform: translate(0);
+}
+
+.navigator-buttons {
+    padding: 8px 16px 0px;
+    display: flex;
+    border-bottom: 2px solid var(--bg-100);
+}
+
+.navigator-buttons button {
+    transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    font-size: larger;
+    color: var(--text-200);
+}
+
+.navigator-buttons button:hover {
+    background: var(--bg-300);
+    border-radius: 8px 8px 0px 0px;
+}
+
+.navigator-buttons button.active {
+    color: var(--text-100);
+}
+
+.chat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.chat.active {
+    background: var(--bg-100);
+}
+
+.chat:hover {
+    background: var(--bg-300);
+}
+
+.chat > img {
+    width: 54px;
+    height: 54px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+.chat > .img {
+    width: 54px;
+    height: 54px;
+    min-width: 54px;
+    border-radius: 50%;
+    font-size: 42px;
+    background: var(--bg-100);
+    text-align: center;
+    font-family: fantasy;
+}
+
+.chat-description {
+    width: 100%;
+}
+
+.chat-label,
+.chat-preview {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 3px 0;
+}
+
+.chat-label .name {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.chat-label .last-seen {
+    font-size: 12px;
+}
+
+.chat-preview > .chat-preview-message {
+    color: var(--text-200);
+    font-size: 14px;
+}
+
+.bottom-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 8px 16px;
+    border-top: 2px solid var(--bg-100);
+}
+
+.bottom-btn {
+    padding: 12px;
+    border: 1px solid var(--primary-300);
+    background: none;
+    cursor: pointer;
+    border-radius: 8px;
+    color: var(--text-100);
+    transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.bottom-btn:hover {
+    background: color-mix(in srgb, var(--primary-300) 10%, transparent);
+    color: var(--text-100);
+}
+
+.bottom-btn.clear {
+    border: 1px solid red;
+}
+
+.bottom-btn:hover.clear {
+    background: rgba(255, 0, 0, 0.1);
+}
+
+.bottom-btn:disabled {
+    opacity: 0.7;
+    cursor: default;
+    background: none;
+}
+
+.bottom-btn.clear:disabled {
+    background: none;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 8px;
+    overflow-y: scroll;
+}
+
+.chat-input {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 8px;
+}
+
+.chat-container textarea {
+    width: 500px;
+    min-height: 30px;
+    max-height: 150px;
+    border-radius: 8px;
+    background: none;
+    border: 1px solid white;
+    color: white;
+    font-size: 16px;
+    padding: 8px;
+    height: 35px;
+    resize: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+}
+
+#send-button {
+    margin-left: 8px;
+    height: 35px;
+    width: 70px;
+    border-radius: 8px;
+    background: var(--primary-200);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#send-button:hover {
+    background: var(--primary-100);
+}
+
+.description {
+    background: var(--bg-200);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 16px;
+}
+
+.description .user-name {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 16px 0;
+}
+
+.description > button {
+    border: 1px solid red;
+    padding: 12px;
+    width: 50%;
+    background: none;
+    color: var(--text-100);
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.description > button:hover {
+    background: rgba(255, 0, 0, 0.1);
+}
+
+.description > button:disabled {
+    cursor: default;
+    opacity: 0.7;
+    background: none;
+}
+
+.description > button:hover:disabled {
+    background: none;
+}
+
+.description img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+.description > div:not(.user-name) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.messages {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 0;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+.messages::-webkit-scrollbar {
+    display: none;
+}
+
+.message {
+    padding: 8px;
+    border-radius: 8px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 18px;
+    min-width: 150px;
+    max-width: 600px;
+}
+
+.message.send {
+    align-self: flex-end;
+    margin-left: 20px;
+    background: color-mix(in srgb, var(--primary-100) 30%, transparent);
+}
+
+.message.receive {
+    align-self: flex-start;
+    margin-right: 20px;
+    background: var(--bg-300);
+}
+
+.message > .time {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 12px;
+    padding: 2px 4px;
+    color: var(--text-200);
+}
